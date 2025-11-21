@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  web-tests:
+    build: .
+    container_name: effective-mobile-tests
+    volumes:
+      - ./allure-results:/app/allure-results
+      - ./screenshots:/app/screenshots
+      - ./allure-reports:/app/allure-reports
+    environment:
+      - BASE_URL=https://www.effective-mobile.ru
+      - BROWSER=chromium
+      - HEADED=false
+      - TIMEOUT=30000
+      - PYTHONUNBUFFERED=1
+    command: pytest -v --alluredir=./allure-results
+
+  allure-report:
+    image: allureframework/allure-commandline
+    container_name: allure-report
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./allure-results:/app/allure-results
+      - ./allure-reports:/app/allure-reports
+    command: >
+      sh -c "allure generate allure-results -o allure-reports --clean && 
+             allure serve allure-reports -p 8080"
+    depends_on:
+      - web-tests
+    profiles:
+      - report
