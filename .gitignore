@@ -54,6 +54,8 @@ reports/
 screenshots/
 *.png
 *.jpg
+*.jpeg
+*.gif
 
 # Logs
 *.log
@@ -67,13 +69,54 @@ logs/
 .Trashes
 ehthumbs.db
 Thumbs.db
+desktop.ini
 
 # Environment variables
 .env
+.env.local
+.env.*.local
 
-# Docker
-.dockerignore
+# Large files and binaries
+*.exe
+*.msi
+*.dmg
+*.pkg
+*.rar
+*.zip
+*.tar.gz
+
+# Embedded git repositories (exclude other projects)
+auth_system/
+main_pet_project/
+smart_tg_bot/
+test_task_django/
+
+# Personal folders
+Saved Pictures/
+Camera Roll/
+Screenshots/
+для папки/
 
 # Temporary files
+*.tmp
 tmp/
 temp/
+
+# Node.js (if present)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Cache
+.cache/
+.mypy_cache/
+.parcel-cache/
+
+# Lock files (keep only package-lock.json if needed)
+*.lock
